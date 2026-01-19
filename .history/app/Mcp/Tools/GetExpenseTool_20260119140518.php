@@ -18,8 +18,6 @@ class GetExpenseTool extends Tool
         - If period=day → use date
         - If period=month → use month
         - If period=year → use year
-        - If period=today → use today's date
-        - If period=yesterday → use yesterday's date
         - If period=range → use from + to
         - If aggregate=total → return sum(amount)
         - If aggregate=list → return expense records
@@ -60,16 +58,6 @@ class GetExpenseTool extends Tool
             'year' => $query->whereYear(
                 'expense_date',
                 $data['year']
-            ),
-
-            'today' => $query->whereDate(
-                'expense_date',
-                now()->toDateString()
-            ),
-
-            'yesterday' => $query->whereDate(
-                'expense_date',
-                now()->subDay()->toDateString()
             ),
 
             'range' => $query->whereBetween(

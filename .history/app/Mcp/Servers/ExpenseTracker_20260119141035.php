@@ -47,7 +47,7 @@ class ExpenseTracker extends Server
      * @var array<int, class-string<\Laravel\Mcp\Server\Resource>>
      */
     protected array $resources = [
-        ExpenseTrackerResource::class,
+        //
     ];
 
     /**
@@ -56,6 +56,6 @@ class ExpenseTracker extends Server
      * @var array<int, class-string<\Laravel\Mcp\Server\Prompt>>
      */
     protected array $prompts = [
-        ExpenseSummaryPrompt::class,
+        //
     ];
 }

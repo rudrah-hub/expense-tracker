@@ -67,7 +67,8 @@ async function chat(prompt, tools) {
 
   console.log("Asking model...");
   const result = await chat(
-    "Give me yesterday’s expenses",
+    "Give me yesterday’s expenses
+",
     ollamaTools
   );
 

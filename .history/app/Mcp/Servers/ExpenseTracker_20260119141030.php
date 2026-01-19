@@ -7,8 +7,7 @@ use App\Mcp\Tools\AddExpenseTool;
 use App\Mcp\Tools\GetExpenseTool;
 use App\Mcp\Tools\UpdateExpenseTool;
 use App\Mcp\Tools\DeleteExpenseTool;
-use App\Mcp\Resources\ExpenseTrackerResource;
-use App\Mcp\Prompts\ExpenseSummaryPrompt;
+use App\
 
 class ExpenseTracker extends Server
 {
@@ -47,7 +46,7 @@ class ExpenseTracker extends Server
      * @var array<int, class-string<\Laravel\Mcp\Server\Resource>>
      */
     protected array $resources = [
-        ExpenseTrackerResource::class,
+        //
     ];
 
     /**
@@ -56,6 +55,6 @@ class ExpenseTracker extends Server
      * @var array<int, class-string<\Laravel\Mcp\Server\Prompt>>
      */
     protected array $prompts = [
-        ExpenseSummaryPrompt::class,
+        //
     ];
 }
