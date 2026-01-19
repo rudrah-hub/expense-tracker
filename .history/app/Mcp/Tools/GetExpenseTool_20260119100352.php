@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Mcp\Tools;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Mcp\Request;
+use Laravel\Mcp\Response;
+use Laravel\Mcp\Server\Tool;
+use App\Models\Expense;
+
+class GetExpenseTool extends Tool
+{
+    /**
+     * The tool's description.
+     */
+    protected string $description = <<<'MARKDOWN'
+        A description of what this tool does.
+    MARKDOWN;
+
+    /**
+     * Handle the tool request.
+     */
+    public function handle(Request $request): Response
+    {
+        $validated = $request->validate([
+            'expense_id' => 'integer',
+            'month' => 'integer',
+            'year' => 'integer',
+        ]);
+
+        $expenses = Expense::where(function ($query) use ($validated) {
+            if (isset($validated['expense_id'])) {
+                $query->where('id', $validated['expense_id']);
+            }
+            if (isset($validated['month'])) {
+                $query->whereMonth('expense_date', $validated['month']);
+            }
+            if (isset($validated['year'])) {
+                $query->whereYear('expense_date', $validated['year']);
+            }
+
+        });
+
+        $expenses = $expenses->get();
+
+        return Response::json($expenses);
+    }
+
+    /**
+     * Get the tool's input schema.
+     *
+     * @return array<string, \Illuminate\Contracts\JsonSchema\JsonSchema>
+     */
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'expense_id' => $schema->integer()->description('The ID of the expense to retrieve.'),
+            'month' => $schema->integer()->description('The month for which to retrieve expenses.'),
+            'year' => $schema->integer()->description('The year for which to retrieve expenses.'),
+            'date' => $schema->string()->format('date')->description('The date of the expense.'),
+        ];
+    }
+}

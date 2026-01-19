@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Mcp\Tools;
+
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Mcp\Request;
+use Laravel\Mcp\Response;
+use Laravel\Mcp\Server\Tool;
+
+class DeleteExpenseTool extends Tool
+{
+    /**
+     * The tool's description.
+     */
+    protected string $description = <<<'MARKDOWN'
+        A description of what this tool does.
+    MARKDOWN;
+
+    /**
+     * Handle the tool request.
+     */
+    public function handle(Request $request): Response
+    {
+
+    }
+
+    /**
+     * Get the tool's input schema.
+     *
+     * @return array<string, \Illuminate\Contracts\JsonSchema\JsonSchema>
+     */
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            //
+        ];
+    }
+}
