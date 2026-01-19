@@ -67,7 +67,7 @@ async function chat(prompt, tools) {
 
   console.log("Asking model...");
   const result = await chat(
-    "What is my total expense of the year 2025 ?",
+    "What is my total expense this month?",
     ollamaTools
   );
 

@@ -51,15 +51,15 @@ class GetExpenseTool extends Tool
 
             'month' => $query->whereMonth(
                 'expense_date',
-                substr($data['month'] ?? now()->format('Y-m'), 5, 2)
+                substr(now()->toDateString(), 5, 2)
             )->whereYear(
                 'expense_date',
-                substr($data['month'] ?? now()->format('Y'), 0, 4)
+                substr(now()->toDateString(), 0, 4)
             ),
 
             'year' => $query->whereYear(
                 'expense_date',
-                $data['year'] ?? now()->format('Y')
+                now()->toDateString()
             ),
 
             'today' => $query->whereDate(
